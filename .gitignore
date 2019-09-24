@@ -1,0 +1,8 @@
+﻿.DS_Store
+.vs/
+OurParserC.Test/.DS_Store
+OurParserC.Test/bin
+OurParserC.Test/obj
+OurParserC/.DS_Store
+OurParserC/bin
+OurParserC/obj
