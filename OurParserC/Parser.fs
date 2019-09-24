@@ -3,7 +3,7 @@
 type parser<'target> = input -> 'target parsed
 
 module Parser =
-    let (<+>) (a:'a parser) (b:'b parser) = fun input ->
+    let (<+>) (a:'a parser) (b:'b parser) : ('a * 'b) parser = fun input ->
         match a input with
         | Error e -> Error e
         | Ok (first,input) ->
@@ -11,11 +11,11 @@ module Parser =
             | Error e -> Error e
             | Ok (second,input) -> Ok ((first,second),input)
 
-    let (<@+>) a b = a <+> b >> Parsed.fst
-    let (<+@>) a b = a <+> b >> Parsed.snd
+    let (<@+>) (a:'a parser) (b:'b parser) : 'a parser = a <+> b >> Parsed.fst
+    let (<+@>) (a:'a parser) (b:'b parser) : 'b parser = a <+> b >> Parsed.snd
 
     exception BinaryException of exn * exn
-    let (<||||>) (a:'a parser) (b:'b parser) = fun input ->
+    let (<||||>) (a:'a parser) (b:'b parser) : binary<'a,'b> parser = fun input ->
         match a input with
         | Ok (a,input) -> Ok (Left a,input)
         | Error (e1,_) ->
@@ -23,7 +23,7 @@ module Parser =
             | Ok (b,input) -> Ok (Right b,input)
             | Error (e2,_) -> Error (BinaryException (e1,e2),input)
 
-    let (<|>) (a:'a parser) (b:'a parser) = a <||||> b >> Parsed.flatBinary
+    let (<|>) (a:'a parser) (b:'a parser) : 'a parser = a <||||> b >> Parsed.flatBinary
 
     let rec zeroOrMore (p:'a parser) : 'a list parser = fun input ->
         match p input with
@@ -46,7 +46,7 @@ module Parser =
             if condition a then Ok (a,input)
             else Error (ConditionTestFailed,input)
 
-    let (@->) (a:'a parser) (b:'a->'b parser) = fun input ->
+    let (@->) (a:'a parser) (b:'a->'b parser) : 'b parser = fun input ->
         match a input with
         | Error e -> Error e
         | Ok (a,input) -> b a input

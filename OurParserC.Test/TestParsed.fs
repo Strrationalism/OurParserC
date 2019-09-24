@@ -1,30 +1,22 @@
-﻿module OutParserC.Tests.TestInputTestParsed
+﻿module OutParserC.Tests.TestParsed
 
 open NUnit.Framework
 open OurParserC
+open Utils
 
 [<Test>]
 let testMap () =
     let a = Ok (1,Input.create "")
-    let b = Parsed.map float a
-    match b with
-    | Ok (1.0,_) -> ()
-    | _ -> Assert.Fail ()
+    let b = Parsed.map uint32 a
+    assertParsed b 1u
 
 [<Test>]
 let testIgnore () =
-    let a = Ok (1,Input.create "")
-    match Parsed.ignore a with
-    | Ok ((),_) -> ()
-    | _ -> Assert.Fail ()
+    let a = Ok (1,Input.create "") |> Parsed.ignore
+    assertParsed a ()
 
 [<Test>]
 let testFstSnd () =
     let a = Ok ((1,2),Input.create "")
-    match Parsed.fst a with
-    | Ok (1,_) -> ()
-    | _ -> Assert.Fail ()
-
-    match Parsed.snd a with
-    | Ok (2,_) -> ()
-    | _ -> Assert.Fail ()
+    assertParsed (Parsed.fst a) 1
+    assertParsed (Parsed.snd a) 2

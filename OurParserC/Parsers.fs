@@ -24,6 +24,8 @@ let charInSeq range : char parser =
     | :? ConditionTestFailed -> NotMatched
     | e -> e)
 
+let always (target:'a) : 'a parser = fun input -> Ok (target,input)
+
 let rec literal (excepted:char seq) : unit parser = fun input ->
     match excepted with
     | x when Seq.isEmpty x -> Ok ((),input)
