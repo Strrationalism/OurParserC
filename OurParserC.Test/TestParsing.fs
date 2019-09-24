@@ -37,6 +37,12 @@ let testFlattedOr () =
     assertParsedError (parser (Input.create "3")) (BinaryException (NotMatched,NotMatched))
 
 [<Test>]
+let testDick () =
+    let parser = anyChar @-> character
+    assertParsed (parser (Input.create "11")) ()
+    assertParsedError (parser (Input.create "12")) NotMatched
+
+[<Test>]
 let testMore () =
     let input = Input.create "12345ab"
     let parsed = ['1';'2';'3';'4';'5']
