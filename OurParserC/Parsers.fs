@@ -10,9 +10,8 @@ let anyChar : char parser = fun input ->
 
 exception NotMatched
 
-let character ch : unit parser = 
+let character ch : char parser = 
     pred anyChar ((=) ch) 
-    >> Parsed.ignore 
     >> Parsed.mapError (function
     | :? ConditionTestFailed -> NotMatched
     | e -> e)
@@ -32,5 +31,5 @@ let rec literal (excepted:char seq) : unit parser = fun input ->
     | x -> 
         match character (Seq.head x) input with
         | Error (e,input) -> Error (e,input)
-        | Ok ((),input) -> 
+        | Ok (_,input) -> 
             literal (Seq.tail x) input

@@ -16,5 +16,10 @@ module Parsed =
         map (function
         | Left a -> a
         | Right a -> a)
+    let bind<'a,'b> (f:'a -> Result<'b,exn>) : 'a parsed -> 'b parsed = 
+        Result.bind (fun (a,input) ->
+            match f a with
+            | Ok b -> Ok (b,input)
+            | Error ex -> Error (ex,input))
 
 

@@ -4,13 +4,6 @@ type parser<'target> = input -> 'target parsed
 
 module Parser =
 
-    let ignore (a:'a parser) : unit parser = a >> Parsed.ignore
-    let fst (a:('a * 'b) parser) : 'a parser = a >> Parsed.fst
-    let snd (a:('a * 'b) parser) : 'b parser = a >> Parsed.snd
-    let map (f:'a->'b) (a:'a parser) : 'b parser = a >> Parsed.map f
-    let mapError (f:exn->exn) (a:'a parser) : 'a parser = a >> Parsed.mapError f
-    let flatBinary (a:binary<'a,'a> parser) : 'a parser = a >> Parsed.flatBinary
-
     let (<+>) (a:'a parser) (b:'b parser) : ('a * 'b) parser = fun input ->
         match a input with
         | Error e -> Error e
@@ -18,6 +11,10 @@ module Parser =
             match b input with
             | Error e -> Error e
             | Ok (second,input) -> Ok ((first,second),input)
+
+    let (<+..>) (head:'a parser) (tail:'a list parser) : 'a list parser =
+        head <+> tail
+        >> Parsed.map (fun (a,b) -> a::b)
 
     let (<@+>) (a:'a parser) (b:'b parser) : 'a parser = a <+> b >> Parsed.fst
     let (<+@>) (a:'a parser) (b:'b parser) : 'b parser = a <+> b >> Parsed.snd
