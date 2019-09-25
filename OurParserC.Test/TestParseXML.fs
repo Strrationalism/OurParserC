@@ -1,4 +1,4 @@
-﻿module OutParserC.Tests.TestParseXML
+﻿module OurParserC.Tests.TestParseXML
 
 open NUnit.Framework
 open OurParserC
@@ -37,11 +37,6 @@ let attribute =
 let testAttribute () =
     assertParser attribute "superAttribute=\"super\"" {key = "superAttribute";value = "super"}
     assertParserError attribute "super\"stup\"" NotMatched
-
-let whitespace = charInSeq [' ';'\t';'\n'] >> Parsed.ignore
-let whitespace0 = zeroOrMore whitespace >> Parsed.ignore
-let whitespace1 = oneOrMore whitespace >> Parsed.ignore
-let whitespaceWrapper parser = whitespace0 <+@> parser <@+> whitespace0
 
 let elementHead = character '<' <+@> whitespace0 <+@> idenifier <+> zeroOrMore (whitespace0 <+@> attribute)
 

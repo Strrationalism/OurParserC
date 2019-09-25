@@ -14,6 +14,7 @@
     <Compile Include="TestParsed.fs" />
     <Compile Include="TestParsing.fs" />
     <Compile Include="TestParseXML.fs" />
+    <Compile Include="TestExpr.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OurParserc\OurParserC.fsproj" />

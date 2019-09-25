@@ -1,4 +1,4 @@
-﻿module OutParserC.Tests.TestParsed
+﻿module OurParserC.Tests.TestParsed
 
 open NUnit.Framework
 open OurParserC
