@@ -51,6 +51,8 @@ let testMore () =
     let basicParsere = charInSeq (seq { 'a'..'z' })
     assertParserError (oneOrMore basicParsere) input NotMatched
     assertParser (zeroOrMore basicParsere) input []
+    assertParser (zeroOrOne basicParser) input (Some '1')
+    assertParser (zeroOrOne basicParsere) input (None)
 
 [<Test>]
 let testAlways () =
@@ -60,5 +62,6 @@ let testAlways () =
 let testLiteral () =
     let input = "Super one two three"
     assertParser (literal "Super") input ()
+
 
 

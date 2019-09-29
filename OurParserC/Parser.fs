@@ -38,9 +38,15 @@ module Parser =
             | Error _ -> Ok ([a],input)
         | Error _ -> Ok ([],input)
 
-    let oneOrMore (p:'a parser) : 'a list parser =
-        p <+> zeroOrMore p
-        >> Parsed.map (fun (head,tail) -> head::tail)
+    let oneOrMore p =
+        p <+..> zeroOrMore p
+
+    let zeroOrOne (p:'a parser) : 'a option parser = 
+        p
+        >> function
+        | Ok (a,b) -> Ok ((Some a),b)
+        | Error (_,b) -> Ok (None,b)
+        
 
     exception ConditionTestFailed
     let pred (p:'a parser) (condition:'a->bool) : 'a parser =
