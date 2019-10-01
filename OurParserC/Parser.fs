@@ -53,8 +53,8 @@ module Parser =
         p
         >> function
         | Error a -> Error a
-        | Ok (a,input) ->
-            if condition a then Ok (a,input)
+        | Ok (a,inputOk) ->
+            if condition a then Ok (a,inputOk)
             else Error (ConditionTestFailed,input)
 
     let (@->) (a:'a parser) (b:'a->'b parser) : 'b parser = fun input ->
