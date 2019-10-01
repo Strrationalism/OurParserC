@@ -49,9 +49,10 @@ module Parser =
         
 
     exception ConditionTestFailed
-    let pred (p:'a parser) (condition:'a->bool) : 'a parser =
-        p
-        >> function
+    let pred (p:'a parser) (condition:'a->bool) : 'a parser = fun input ->
+        input
+        |> p
+        |> function
         | Error a -> Error a
         | Ok (a,inputOk) ->
             if condition a then Ok (a,inputOk)
