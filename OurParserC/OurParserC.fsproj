@@ -11,6 +11,8 @@
     <Description>Parser Combinator for F#</Description>
     <PackageId>OurParserC</PackageId>
     <PackOnBuild>true</PackOnBuild>
+    <Version>1.1.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
