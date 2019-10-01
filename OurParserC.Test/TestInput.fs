@@ -5,8 +5,10 @@ open OurParserC
 
 [<Test>]
 let createAndPeek () =
-    let src ="""1
-2"""
+    let src2 ="""1
+2""" 
+
+    let src = src2.Replace("\r","")
 
     let i1 = Input.create src
     match Input.peek i1 with
