@@ -55,6 +55,16 @@ let testMore () =
     assertParser (zeroOrOne basicParsere) input (None)
 
 [<Test>]
+let testListOperator () =
+    let input = "111222"
+    let parser = zeroOrMore (character '1') <..+..> zeroOrMore (character '2')
+    assertParser parser input ['1';'1';'1';'2';'2';'2']
+    let parser2 = zeroOrMore (character '1') <..+> character '2'
+    assertParser parser2 input ['1';'1';'1';'2']
+    let parser3 = (zeroOrMore (character '1') >> Parsed.map (fun _ -> '3')) <+..> zeroOrMore (character '2')
+    assertParser parser3 input ['3';'2';'2';'2']
+
+[<Test>]
 let testAlways () =
     assertParser (always 12345) "p" 12345
 
