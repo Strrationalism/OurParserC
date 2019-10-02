@@ -16,6 +16,13 @@ module Parser =
         head <+> tail
         >> Parsed.map (fun (a,b) -> a::b)
 
+    let (<..+..>) (head:'a list parser) (tail:'a list parser) =
+        head <+> tail
+        >> Parsed.map (fun (a,b) -> List.append a b)
+
+    let (<..+>) (head:'a list parser) (tail:'a parser) =
+        head <..+..> (tail >> Parsed.map List.singleton)
+
     let (<@+>) (a:'a parser) (b:'b parser) : 'a parser = a <+> b >> Parsed.fst
     let (<+@>) (a:'a parser) (b:'b parser) : 'b parser = a <+> b >> Parsed.snd
 
