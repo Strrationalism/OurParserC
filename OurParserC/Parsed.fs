@@ -7,8 +7,12 @@ type binary<'left,'right> =
 type parsed<'a> = Result<'a * input,exn * input>
 
 module Parsed =
+    exception ParsedException of exn*input
     let map (f:'a->'b) : 'a parsed -> 'b parsed = Result.map (fun (p,i) ->f p,i)
     let mapError (f:exn->exn) : 'a parsed -> 'a parsed = Result.mapError (fun (e,i) -> f e,i)
+    let raise : 'a parsed -> unit = function
+    | Error (e,i) -> raise (ParsedException(e,i))
+    | _ -> ()
     let ignore<'a,'b> : 'a parsed -> unit parsed = map global.ignore
     let fst<'a,'b> : ('a * 'b) parsed -> 'a parsed = map global.fst
     let snd<'a,'b> : ('a * 'b) parsed -> 'b parsed = map global.snd
