@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <PackageVersion>1.1.5</PackageVersion>
+    <PackageVersion>1.1.6</PackageVersion>
     <Authors>Strrationalism</Authors>
     <Owners>Strrationalism</Owners>
     <PackageProjectUrl>github.com/Strrationalism/OurParserC</PackageProjectUrl>
@@ -11,7 +11,7 @@
     <Description>Parser Combinator for F#</Description>
     <PackageId>OurParserC</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <Version>1.1.5</Version>
+    <Version>1.1.6</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

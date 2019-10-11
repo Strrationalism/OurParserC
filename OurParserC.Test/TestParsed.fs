@@ -16,6 +16,11 @@ let testIgnore () =
     assertParsed a ()
 
 [<Test>]
+let testReplace () =
+    let a = Ok (1,Input.create "") |> Parsed.replace ""
+    assertParsed a ""
+
+[<Test>]
 let testFstSnd () =
     let a = Ok ((1,2),Input.create "")
     assertParsed (Parsed.fst a) 1
