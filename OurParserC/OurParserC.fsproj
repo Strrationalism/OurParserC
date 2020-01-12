@@ -1,8 +1,8 @@
 ﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageVersion>1.1.6</PackageVersion>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <PackageVersion>2.0</PackageVersion>
     <Authors>Strrationalism</Authors>
     <Owners>Strrationalism</Owners>
     <PackageProjectUrl>github.com/Strrationalism/OurParserC</PackageProjectUrl>

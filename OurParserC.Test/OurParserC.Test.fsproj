@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net451</TargetFramework>
     <IsPackable>false</IsPackable>
     <Version>1.0</Version>
     <OutputType>Library</OutputType>
