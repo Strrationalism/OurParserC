@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <PackageVersion>2.0</PackageVersion>
+    <PackageVersion>2.0.1</PackageVersion>
     <Authors>Strrationalism</Authors>
     <Owners>Strrationalism</Owners>
     <PackageProjectUrl>github.com/Strrationalism/OurParserC</PackageProjectUrl>
@@ -11,9 +11,9 @@
     <Description>Parser Combinator for F#</Description>
     <PackageId>OurParserC</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
