@@ -10,8 +10,11 @@ module Parsed =
     exception ParsedException of exn*input
     let map (f:'a->'b) : 'a parsed -> 'b parsed = Result.map (fun (p,i) ->f p,i)
     let mapError (f:exn->exn) : 'a parsed -> 'a parsed = Result.mapError (fun (e,i) -> f e,i)
-    let replace (t:'target) : 'a parsed -> 'target parsed =
-        map (fun _ -> t)
+    let replaceError (e:exn) = mapError (fun _ -> e)
+    let replace (t:'target) : 'a parsed -> 'target parsed = map (fun _ -> t)
+    let get : 'a parsed -> 'a = function
+    | Error (e,i) -> raise (ParsedException(e,i))
+    | Ok (x,_) -> x
     let raise : 'a parsed -> 'a parsed = function
     | Error (e,i) -> raise (ParsedException(e,i))
     | x -> x
@@ -27,5 +30,6 @@ module Parsed =
             match f a with
             | Ok b -> Ok (b,input)
             | Error ex -> Error (ex,input))
+
 
 

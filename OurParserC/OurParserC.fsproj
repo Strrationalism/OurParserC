@@ -1,8 +1,8 @@
 ﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <PackageVersion>2.0.1</PackageVersion>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+    <PackageVersion>2.0.2</PackageVersion>
     <Authors>Strrationalism</Authors>
     <Owners>Strrationalism</Owners>
     <PackageProjectUrl>github.com/Strrationalism/OurParserC</PackageProjectUrl>
@@ -11,9 +11,9 @@
     <Description>Parser Combinator for F#</Description>
     <PackageId>OurParserC</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
