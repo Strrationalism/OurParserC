@@ -1,8 +1,8 @@
-﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
-    <PackageVersion>2.0.2</PackageVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <PackageVersion>2.0.3</PackageVersion>
     <Authors>Strrationalism</Authors>
     <Owners>Strrationalism</Owners>
     <PackageProjectUrl>github.com/Strrationalism/OurParserC</PackageProjectUrl>
@@ -11,23 +11,11 @@
     <Description>Parser Combinator for F#</Description>
     <PackageId>OurParserC</PackageId>
     <PackOnBuild>true</PackOnBuild>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>2.0.2.0</AssemblyVersion>
+    <AssemblyVersion>2.0.3.0</AssemblyVersion>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <GenerateTailCalls>true</GenerateTailCalls>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <GenerateTailCalls>true</GenerateTailCalls>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="FSharp.Core" Version="4.1.*" />
-    <PackageReference Include="FSharp.NET.Sdk" Version="1.0.*" PrivateAssets="All" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Include="Input.fs" />
     <Compile Include="Parsed.fs" />
